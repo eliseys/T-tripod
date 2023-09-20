@@ -87,6 +87,122 @@ difference(){
 };
 ///
 
+module wedge_vixen(latitude, delta_h, flip){
+    
+color("silver"){
+
+points_w=[[15,-40],[90,-40],[90,0],[15,0],[0,-15],[0,-40+15]];
+paths_w=[[0,1,2,3,4,5]];
+
+
+
+rotate([90-flip, -90-latitude, 0]){
+    
+translate([-14-delta_h, 20, -45/2]){
+
+
+difference(){
+    union(){
+        linear_extrude(45){
+            polygon(points_w,paths_w);
+        };
+        translate([0, 0, -(60/2-45/2)]){
+            linear_extrude(60){
+                //polygon([[90,-40],[90+60,-40],[90+60,0],[90,0]]);
+            };
+        };
+    };
+    translate([14, -20, 0]){
+        rotate([0, 0, -5]){
+            translate([0, 0, -50]){
+                cylinder(h=100, r=4.1, $fn=100);
+            };
+            translate([45, 0, -50]){
+                cylinder(h=100, r=4.1, $fn=100);
+            };
+        };
+    };
+    
+    translate([14, -20, 0]){
+        rotate([0,0,10]){
+            translate([0, 0, -50]){
+                cylinder(h=100, r=4.1, $fn=100);
+            };
+            translate([45, 0, -50]){
+                cylinder(h=100, r=4.1, $fn=100);
+            };
+        };
+    };
+    
+    translate([14+10, -20, 0]){
+        rotate([0,0,0]){
+            translate([0, 0, -50]){
+                cylinder(h=100, r=4.1, $fn=100);
+            };
+            translate([45, 0, -50]){
+                cylinder(h=100, r=4.1, $fn=100);
+            };
+        };
+    };
+    
+    
+    
+    // 3/8 inch
+    translate([120,50,22.5]){
+        rotate([90,0,0]){
+            cylinder(h=100, r=5.0, $fn=100);
+        };
+    };
+    
+    // 6M 
+    translate([120,50,0.5]){
+        rotate([90,0,0]){
+            cylinder(h=100,r=3.5,$fn=100);
+        };
+    };
+    translate([120,50,45-0.5]){
+        rotate([90,0,0]){
+            cylinder(h=100,r=3.5,$fn=100);
+        };
+    };
+};
+};
+};
+};
+};
+
+
+module dovetail_clamp(){
+    
+    
+    
+    p1 = [0, 0];
+    p2 = [65/2, 0];
+    p3 = [65/2, 19];
+    p4 = [(44)/2 - 10/tan(75), 19];
+    p5 = [(44)/2, 9];
+    p6 = [0, 9];
+    p7 = [-(44)/2, 9];
+    p8 = [-((44)/2 - 10/tan(75)), 19];
+    p9 = [-65/2, 19];
+    p10 = [-65/2, 0];
+    p11 = [0, 0];
+    
+    p = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11];
+    
+    linear_extrude(80) polygon(p);
+    
+    
+    
+    
+    
+    };
+
+dovetail_clamp();
+
+
+
+///wedge_vixen(45, 10, 0);
 
 
 
